@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * This class provides a convenient way to test shuffling methods.
  */
@@ -14,6 +16,7 @@ public class Shuffler {
 	 * @param args is not used.
 	 */
 	public static void main(String[] args) {
+		
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive perfect shuffles:");
 		int[] values1 = {0, 1, 2, 3};
@@ -39,8 +42,34 @@ public class Shuffler {
 			System.out.println();
 		}
 		System.out.println();
+		/*
+		 * created an ArrayList called names, added names within the ArrayList, then 
+		 * passed the list over to the new method, where they will be shuffled
+		 */
+		System.out.println("SHUFFLING NAMES");
+		ArrayList<String> names = new ArrayList<String>();
+		names.add("Sophia");
+		names.add("Annamarie");
+		names.add("Angela");
+		names.add("Aaron");
+		names.add("Alex");
+		names.add("Jeff");
+		names.add("Tim");
+		names.add("Michael");
+		wordShuffle(names);
 	}
 
+	public static void wordShuffle(ArrayList<String> names) {
+		for (int k = names.size() - 1; k > 0; k--) {
+			
+			int pos = (int)(Math.random() * k);
+			
+			String temp = names.get(pos);
+			names.set(pos, names.get(k));
+			names.set(k, temp);
+		}
+		
+	}
 
 	/**
 	 * Apply a "perfect shuffle" to the argument.
@@ -96,12 +125,13 @@ public class Shuffler {
 	public static void selectionShuffle(int[] values) {
 		for (int k = values.length - 1; k > 0; k--) {
 			int pos = (int) (Math.random() * (k +1));
+	//3 part swap:
 		//copy from position to temp
 			int temp = values[pos];
 		//copy from k to position
 			values[pos] = values[k];
 		//copy from temp to k
-			values[k] =temp;
-			}
+			values[k] = temp;
+			} 
 		}
 	}

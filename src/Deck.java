@@ -33,6 +33,7 @@ public class Deck {
             for (String suitString : suits){ // for each rank, will go through all of the suits
                 this.cards.add(new Card(ranks[j], suitString, values[j])); // for each card, will create a new rank, suit, and values in list
             }
+            shuffle();
         }
         // init the size variable
         this.size = cards.size();
@@ -56,9 +57,25 @@ public class Deck {
 	 * Randomly permute the given collection of cards
 	 * and reset the size to represent the entire deck.
 	 */
+
 	public void shuffle() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		// setup a loop from the end to the beginning (not including zero)
+		for (int x = cards.size() - 1; x > 0; x--) {
+			// draw a random number from 0 (the counter)
+			int pos = (int)(Math.random() * (x + 1));
+			// three-part swap with counter and random
+			Card temp = cards.get(pos);
+			cards.set(pos, cards.get(x));
+			cards.set(x, temp);
+		}
+		//after the loop, reset the size
+		/*
+		 * after looping through and instantiating all of the cards, 
+		 * will shuffle them up, resetting the counter back to 0 
+		 * (makes more sense and is more efficient
+		 * */
 	}
+
 	/**
 	 * Deals a card from this deck.
 	 * @return the card just dealt, or null if all the cards have been
